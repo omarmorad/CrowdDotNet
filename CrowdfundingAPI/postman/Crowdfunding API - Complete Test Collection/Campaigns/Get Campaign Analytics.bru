@@ -1,0 +1,19 @@
+meta {
+  name: Get Campaign Analytics
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v1/campaigns/{{campaignId}}/analytics
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{authToken}}
+}
+
+settings {
+  encodeUrl: true
+}
