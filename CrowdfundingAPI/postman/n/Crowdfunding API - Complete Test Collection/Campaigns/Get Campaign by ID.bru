@@ -1,0 +1,15 @@
+meta {
+  name: Get Campaign by ID
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/campaigns/{{campaignId}}
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

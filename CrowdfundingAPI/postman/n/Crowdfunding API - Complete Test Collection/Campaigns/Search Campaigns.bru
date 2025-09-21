@@ -1,0 +1,23 @@
+meta {
+  name: Search Campaigns
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/campaigns?searchTerm=smart&category=Technology&status=Active&sortBy=CreatedAt&sortDescending=true
+  body: none
+  auth: inherit
+}
+
+params:query {
+  searchTerm: smart
+  category: Technology
+  status: Active
+  sortBy: CreatedAt
+  sortDescending: true
+}
+
+settings {
+  encodeUrl: true
+}

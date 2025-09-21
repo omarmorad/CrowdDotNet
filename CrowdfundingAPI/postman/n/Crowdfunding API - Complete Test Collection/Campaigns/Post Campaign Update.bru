@@ -1,0 +1,27 @@
+meta {
+  name: Post Campaign Update
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/api/v1/campaigns/{{campaignId}}/updates
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{authToken}}
+}
+
+body:json {
+  {
+    "title": "Development Progress Update",
+    "content": "We've made significant progress on the AI assistant development. The core natural language processing engine is now 80% complete, and we've begun initial testing with beta users. The feedback has been overwhelmingly positive!"
+  }
+}
+
+settings {
+  encodeUrl: true
+}
