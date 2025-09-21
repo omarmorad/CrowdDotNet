@@ -1,0 +1,21 @@
+using CrowdfundingAPI.Application.Common;
+using CrowdfundingAPI.Application.DTOs.Campaign;
+using CrowdfundingAPI.Domain.Enums;
+using MediatR;
+
+namespace CrowdfundingAPI.Application.Commands.Campaign;
+
+public class CreateCampaignCommand : IRequest<ApiResponse<CampaignDto>>
+{
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string ShortDescription { get; set; } = string.Empty;
+    public decimal GoalAmount { get; set; }
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
+    public string CoverImageUrl { get; set; } = string.Empty;
+    public string VideoUrl { get; set; } = string.Empty;
+    public CampaignCategory Category { get; set; }
+    public List<CreateRewardTierDto> RewardTiers { get; set; } = new();
+    public Guid UserId { get; set; }
+}
