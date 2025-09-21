@@ -1,0 +1,42 @@
+meta {
+  name: Register User
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/register
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe{{$randomInt}}@example.com",
+    "password": "Password123",
+    "confirmPassword": "Password123",
+    "bio": "Test user for API testing"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+      const response = res.getBody();
+      if (response.success && response.data.token) {
+          bru.setEnvVar('authToken', response.data.token);
+          bru.setEnvVar('refreshToken', response.data.refreshToken);
+          bru.setEnvVar('userId', response.data.user.id);
+          console.log('Auth token saved:', response.data.token.substring(0, 20) + '...');
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
