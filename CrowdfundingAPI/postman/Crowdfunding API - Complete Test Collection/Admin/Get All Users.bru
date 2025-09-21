@@ -1,0 +1,25 @@
+meta {
+  name: Get All Users
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/admin/users?pageNumber=1&pageSize=10&searchTerm=
+  body: none
+  auth: inherit
+}
+
+params:query {
+  pageNumber: 1
+  pageSize: 10
+  searchTerm: 
+}
+
+headers {
+  Authorization: Bearer {{adminToken}}
+}
+
+settings {
+  encodeUrl: true
+}
