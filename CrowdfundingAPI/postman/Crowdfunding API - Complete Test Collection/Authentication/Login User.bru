@@ -1,0 +1,38 @@
+meta {
+  name: Login User
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/auth/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "creator@example.com",
+    "password": "Password123"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+      const response = res.getBody();
+      if (response.success && response.data.token) {
+          bru.setEnvVar('authToken', response.data.token);
+          bru.setEnvVar('refreshToken', response.data.refreshToken);
+          bru.setEnvVar('userId', response.data.user.id);
+          console.log('Login successful, token saved');
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
