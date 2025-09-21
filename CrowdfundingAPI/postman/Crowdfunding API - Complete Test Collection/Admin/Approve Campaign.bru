@@ -1,0 +1,19 @@
+meta {
+  name: Approve Campaign
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/api/v1/admin/campaigns/{{campaignId}}/approve
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{adminToken}}
+}
+
+settings {
+  encodeUrl: true
+}

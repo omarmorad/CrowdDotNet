@@ -1,0 +1,28 @@
+meta {
+  name: Ban User
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/v1/admin/users/{{userId}}/ban
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{adminToken}}
+}
+
+body:json {
+  {
+    "reason": "Violation of terms of service",
+    "banUntil": "2024-12-31T23:59:59Z",
+    "isPermanent": false
+  }
+}
+
+settings {
+  encodeUrl: true
+}

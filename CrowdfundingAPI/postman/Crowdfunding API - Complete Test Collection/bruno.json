@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Crowdfunding API - Complete Test Collection",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
