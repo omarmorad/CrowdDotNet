@@ -1,0 +1,27 @@
+meta {
+  name: Update Pledge
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/api/v1/pledges/{{pledgeId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{authToken}}
+}
+
+body:json {
+  {
+    "amount": 75,
+    "rewardTierId": null
+  }
+}
+
+settings {
+  encodeUrl: true
+}

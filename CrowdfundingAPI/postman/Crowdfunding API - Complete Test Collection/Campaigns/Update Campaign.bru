@@ -1,0 +1,30 @@
+meta {
+  name: Update Campaign
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/v1/campaigns/{{campaignId}}
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{authToken}}
+}
+
+body:json {
+  {
+    "title": "Revolutionary AI Assistant - Updated",
+    "description": "Updated description with more details about our amazing AI assistant project.",
+    "shortDescription": "Updated short description",
+    "coverImageUrl": "https://example.com/updated-image.jpg",
+    "videoUrl": "https://example.com/updated-video.mp4"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

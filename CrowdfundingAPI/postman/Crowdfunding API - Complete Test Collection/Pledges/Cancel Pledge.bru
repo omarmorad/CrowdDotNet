@@ -1,0 +1,19 @@
+meta {
+  name: Cancel Pledge
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/pledges/{{pledgeId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{authToken}}
+}
+
+settings {
+  encodeUrl: true
+}

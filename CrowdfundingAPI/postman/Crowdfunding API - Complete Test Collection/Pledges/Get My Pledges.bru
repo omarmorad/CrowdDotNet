@@ -1,0 +1,24 @@
+meta {
+  name: Get My Pledges
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/pledges/my-pledges?pageNumber=1&pageSize=10
+  body: none
+  auth: inherit
+}
+
+params:query {
+  pageNumber: 1
+  pageSize: 10
+}
+
+headers {
+  Authorization: Bearer {{authToken}}
+}
+
+settings {
+  encodeUrl: true
+}
