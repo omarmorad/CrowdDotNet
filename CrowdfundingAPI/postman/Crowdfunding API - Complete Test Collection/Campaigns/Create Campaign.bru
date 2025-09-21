@@ -1,0 +1,60 @@
+meta {
+  name: Create Campaign
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/campaigns
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: Bearer {{authToken}}
+}
+
+body:json {
+  {
+    "title": "Revolutionary AI Assistant",
+    "description": "We are building the next generation AI assistant that will revolutionize how people interact with technology. Our AI will be capable of understanding complex queries, providing intelligent responses, and learning from user interactions to become more helpful over time. This project aims to create a more intuitive and accessible AI experience for everyone.",
+    "shortDescription": "Next-gen AI assistant with advanced learning capabilities",
+    "goalAmount": 100000,
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z",
+    "coverImageUrl": "https://example.com/ai-assistant.jpg",
+    "videoUrl": "https://example.com/ai-assistant-video.mp4",
+    "category": "Technology",
+    "rewardTiers": [
+      {
+        "title": "Early Supporter",
+        "description": "Get early access to the beta version",
+        "minimumAmount": 25,
+        "maxBackers": 100,
+        "estimatedDelivery": "2024-06-01T00:00:00Z"
+      },
+      {
+        "title": "Premium Backer",
+        "description": "Beta access + exclusive features + merchandise",
+        "minimumAmount": 100,
+        "maxBackers": 50,
+        "estimatedDelivery": "2024-06-01T00:00:00Z"
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+      const response = res.getBody();
+      if (response.success && response.data.id) {
+          bru.setEnvVar('campaignId', response.data.id);
+          console.log('Campaign created with ID:', response.data.id);
+      }
+  }
+}
+
+settings {
+  encodeUrl: true
+}
