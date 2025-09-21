@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: crowdfunding-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=CrowdfundingDB;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - crowdfunding-network
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: crowdfunding-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - crowdfunding-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  crowdfunding-network:
+    driver: bridge
