@@ -1,0 +1,19 @@
+meta {
+  name: Cancel Campaign
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/campaigns/{{campaignId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Authorization: Bearer {{authToken}}
+}
+
+settings {
+  encodeUrl: true
+}
